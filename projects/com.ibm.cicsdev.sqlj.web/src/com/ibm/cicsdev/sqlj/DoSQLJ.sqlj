@@ -1,0 +1,56 @@
+package com.ibm.cicsdev.sqlj;
+
+/* Licensed Materials - Property of IBM                               */
+/*                                                                    */
+/* SAMPLE                                                             */
+/*                                                                    */
+/* (c) Copyright IBM Corp. 2017 All Rights Reserved                   */
+/*                                                                    */
+/* US Government Users Restricted Rights - Use, duplication or        */
+/* disclosure restricted by GSA ADP Schedule Contract with IBM Corp   */
+/*                                                                    */
+
+import java.sql.Connection;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+
+public class DoSQLJ {
+
+	#sql public static context UserContext;
+	#sql iterator Cursor1 (String);
+	protected Cursor1 cursor1 = null;
+	protected UserContext userContext;
+	
+	public String getCurrentTimestamp() throws Exception {
+	
+		String currentTimeStamp = null;
+
+		// Obtain a DataSource Connection
+		Context initialContext = new InitialContext();
+		DataSource dataSource = (DataSource) initialContext.lookup("jdbc/defaultCICSDataSource");
+		Connection connection = dataSource.getConnection();
+		
+		userContext = new UserContext(connection);
+		
+		// Execute the SQL
+		#sql [userContext] cursor1 = {SELECT CURRENT TIMESTAMP FROM SYSIBM.SYSDUMMY1};
+		
+		// Get the results
+		if (!cursor1.next()) {
+			throw new Exception("Error: SQL query did not return any results");
+		}
+		
+		currentTimeStamp = cursor1.getResultSet().getString(1);
+
+		// Commit
+		connection.commit();
+
+		// Close the connection
+		connection.close();
+		
+		// Return the user
+		return currentTimeStamp;
+	}
+}
