@@ -10,7 +10,7 @@ Sample SQLJ Java EE web application demonstrating how to use a SQLJ in a web ser
 ## Samples overview
 
 * `com.ibm.cicsdev.sqlj.web` - Dynamic web project containing the SimpleSQLJServlet servlet.  The servlet uses the DoSQLJ class which connects to DB2 by obtaining a DataSource via a JNDI lookup and that uses JMS and returns the current DB2 timestamp from DB2
-* `com.ibm.cicsdev.SQLJ.web.cicsbundle` - CICS bundle project that references the WAR (Dynamic web project) bundle part for deployment in a CICS bundle
+* `com.ibm.cicsdev.sqlj.web.cicsbundle` - CICS bundle project that references the WAR (Dynamic web project) bundle part for deployment in a CICS bundle
 
 ## Pre-requisites
 * CICS TS V5.3 with APAR PI67640 and APAR PI58375, or CICS TS V5.4
@@ -32,7 +32,7 @@ The sample code can be deployed as an WAR file into a CICS Liberty JVM server. T
 -Dcom.ibm.cics.jvmserver.wlp.autoconfigure=true
 -Dcom.ibm.cics.jvmserver.wlp.jdbc.driver.location=/usr/lpp/db2v12/jdbc
 ```
-where  ```/usr/lpp/db2v12/jdbc``` is the location of your DB2 JDBC and SQLJ driver
+where  ```/usr/lpp/db2v12/jdbc``` is the location of the DB2 JDBC and SQLJ drivers
 1. Add the SQLJ driver to the Liberty global library:
 ```xml
 <library id="global">
