@@ -37,7 +37,7 @@ public class SimpleSQLJServlet extends HttpServlet {
 			DoSQLJ sqlj = new DoSQLJ();
 			currentTimeStamp = sqlj.getCurrentTimestamp();
 			out.println("SimpleSQLJServlet: DB2 CurrentTimeStamp = " + currentTimeStamp);
-		} catch (Exception e) {
+		} catch (Throwable e) {
 			throw new ServletException(e);
 		}
 	}
