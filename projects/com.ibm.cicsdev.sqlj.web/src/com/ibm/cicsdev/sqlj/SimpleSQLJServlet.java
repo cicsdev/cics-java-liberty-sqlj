@@ -13,6 +13,7 @@ package com.ibm.cicsdev.sqlj;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -26,6 +27,20 @@ import javax.servlet.http.HttpServletResponse;
 public class SimpleSQLJServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+
+	private DoSQLJ doSQLJ;
+	
+	/**
+	 * @see Servlet#init(ServletConfig)
+	 */
+	public void init(ServletConfig config) throws ServletException {
+		try {
+			doSQLJ = new DoSQLJ();
+		} catch (Exception e) {
+			throw new ServletException(e);
+		}
+	} 
+	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -34,8 +49,7 @@ public class SimpleSQLJServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		String currentTimeStamp;
 		try {
-			DoSQLJ sqlj = new DoSQLJ();
-			currentTimeStamp = sqlj.getCurrentTimestamp();
+			currentTimeStamp = doSQLJ.getCurrentTimestamp();
 			out.println("SimpleSQLJServlet: DB2 CurrentTimeStamp = " + currentTimeStamp);
 		} catch (Exception e) {
 			throw new ServletException(e);

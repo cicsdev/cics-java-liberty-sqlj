@@ -131,19 +131,26 @@ implements sqlj.runtime.PositionedIterator
 	protected Cursor1 cursor1 = null;
 	protected UserContext userContext;
 	
+	private DataSource dataSource;
+
+	public DoSQLJ() throws Exception {
+		
+		// Use JNDI to find the dataSource
+		Context initialContext = new InitialContext();
+		dataSource = (DataSource) initialContext.lookup("jdbc/defaultCICSDataSource");		
+	}
+	
 	public String getCurrentTimestamp() throws Exception {
 	
 		String currentTimeStamp = null;
 
 		// Obtain a DataSource Connection
-		Context initialContext = new InitialContext();
-		DataSource dataSource = (DataSource) initialContext.lookup("jdbc/defaultCICSDataSource");
 		Connection connection = dataSource.getConnection();
 		
 		userContext = new UserContext(connection);
 		
 		// Execute the SQL
-		/*@lineinfo:generated-code*//*@lineinfo:38^2*/
+		/*@lineinfo:generated-code*//*@lineinfo:45^2*/
 
 //  ************************************************************
 //  #sql [userContext] cursor1 = { SELECT CURRENT TIMESTAMP FROM SYSIBM.SYSDUMMY1 };
@@ -170,7 +177,7 @@ implements sqlj.runtime.PositionedIterator
 
 //  ************************************************************
 
-/*@lineinfo:user-code*//*@lineinfo:38^78*/
+/*@lineinfo:user-code*//*@lineinfo:45^78*/
 		
 		// Get the results
 		if (!cursor1.next()) {
