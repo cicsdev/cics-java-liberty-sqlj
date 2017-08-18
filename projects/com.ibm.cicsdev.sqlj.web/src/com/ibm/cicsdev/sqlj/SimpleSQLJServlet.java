@@ -12,6 +12,7 @@ package com.ibm.cicsdev.sqlj;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -51,7 +52,7 @@ public class SimpleSQLJServlet extends HttpServlet {
 		try {
 			currentTimeStamp = doSQLJ.getCurrentTimestamp();
 			out.println("SimpleSQLJServlet: DB2 CurrentTimeStamp = " + currentTimeStamp);
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			throw new ServletException(e);
 		}
 	}
