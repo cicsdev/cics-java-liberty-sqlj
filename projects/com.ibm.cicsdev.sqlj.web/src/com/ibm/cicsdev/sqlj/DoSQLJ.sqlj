@@ -11,6 +11,7 @@ package com.ibm.cicsdev.sqlj;
 /*                                                                    */
 
 import java.sql.Connection;
+import java.sql.SQLException;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -32,7 +33,7 @@ public class DoSQLJ {
 		dataSource = (DataSource) initialContext.lookup("jdbc/defaultCICSDataSource");		
 	}
 	
-	public String getCurrentTimestamp() throws Exception {
+	public String getCurrentTimestamp() throws SQLException {
 	
 		String currentTimeStamp = null;
 
@@ -46,7 +47,7 @@ public class DoSQLJ {
 		
 		// Get the results
 		if (!cursor1.next()) {
-			throw new Exception("Error: SQL query did not return any results");
+			throw new SQLException("Error: SQL query did not return any results");
 		}
 		
 		currentTimeStamp = cursor1.getResultSet().getString(1);

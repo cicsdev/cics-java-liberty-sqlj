@@ -11,6 +11,7 @@
 /*                                                                    */
 
 import java.sql.Connection;
+import java.sql.SQLException;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -18,7 +19,7 @@ import javax.sql.DataSource;
 
 public class DoSQLJ {
 
-	/*@lineinfo:generated-code*//*@lineinfo:21^1*/
+	/*@lineinfo:generated-code*//*@lineinfo:22^1*/
 
 //  ************************************************************
 //  SQLJ context declaration:
@@ -96,8 +97,8 @@ implements sqlj.runtime.ConnectionContext
 
 //  ************************************************************
 
-/*@lineinfo:user-code*//*@lineinfo:21^38*/
-	/*@lineinfo:generated-code*//*@lineinfo:22^1*/
+/*@lineinfo:user-code*//*@lineinfo:22^38*/
+	/*@lineinfo:generated-code*//*@lineinfo:23^1*/
 
 //  ************************************************************
 //  SQLJ iterator declaration:
@@ -127,7 +128,7 @@ implements sqlj.runtime.PositionedIterator
 
 //  ************************************************************
 
-/*@lineinfo:user-code*//*@lineinfo:22^30*/
+/*@lineinfo:user-code*//*@lineinfo:23^30*/
 	protected Cursor1 cursor1 = null;
 	protected UserContext userContext;
 	
@@ -140,7 +141,7 @@ implements sqlj.runtime.PositionedIterator
 		dataSource = (DataSource) initialContext.lookup("jdbc/defaultCICSDataSource");		
 	}
 	
-	public String getCurrentTimestamp() throws Exception {
+	public String getCurrentTimestamp() throws SQLException {
 	
 		String currentTimeStamp = null;
 
@@ -150,7 +151,7 @@ implements sqlj.runtime.PositionedIterator
 		userContext = new UserContext(connection);
 		
 		// Execute the SQL
-		/*@lineinfo:generated-code*//*@lineinfo:45^2*/
+		/*@lineinfo:generated-code*//*@lineinfo:46^2*/
 
 //  ************************************************************
 //  #sql [userContext] cursor1 = { SELECT CURRENT TIMESTAMP FROM SYSIBM.SYSDUMMY1 };
@@ -177,11 +178,11 @@ implements sqlj.runtime.PositionedIterator
 
 //  ************************************************************
 
-/*@lineinfo:user-code*//*@lineinfo:45^78*/
+/*@lineinfo:user-code*//*@lineinfo:46^78*/
 		
 		// Get the results
 		if (!cursor1.next()) {
-			throw new Exception("Error: SQL query did not return any results");
+			throw new SQLException("Error: SQL query did not return any results");
 		}
 		
 		currentTimeStamp = cursor1.getResultSet().getString(1);
