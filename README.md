@@ -60,7 +60,7 @@ If the test is successful, you will see the a response similar to the following 
 `SimpleSQLJServlet: DB2 CurrentTimeStamp = 2017-08-02 11:28:46.18055`
 
 ## Reference
-*  Sample SQLJ Git repository  [cics-java-liberty-sqlj](https://github.com/DavidXRoberts/cics-java-liberty-sqlj)
+*  Sample JDBC Git repository  [cics-java-liberty-jdbc](https://github.com/cicsdev/cics-java-liberty-jdbc)
 *  CICS Knowledge Center [Configuring a Liberty JVM server](https://www.ibm.com/support/knowledgecenter/SSGMCP_5.4.0/configuring/java/config_jvmserver_liberty.html)
 *  CICS Knowledge Center [Configuring a JVM server to support DB2](https://www.ibm.com/support/knowledgecenter/en/SSGMCP_5.4.0/applications/developing/database/dfhtk4b.html)
 
