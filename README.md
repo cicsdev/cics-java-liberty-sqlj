@@ -33,19 +33,19 @@ The sample code can be deployed as an WAR file into a CICS Liberty JVM server. T
 ### To configure CICS
 1. Create a Liberty JVM server as described in [4 easy steps](https://developer.ibm.com/cics/2015/06/04/starting-a-cics-liberty-jvm-server-in-4-easy-steps/)
 
-1. Edit the server.xml and the DB2 JCC driver to the Liberty global library:
-    ```xml
-    <library id="global">
-        <fileset dir="/usr/lpp/db2v12/jdbc/classes" includes="db2jcc4.jar"/>
-    </library>
-    ```
-
 1. Add the following properties to the JVM profile to automatically configure the CICS default DataSource:
      ```
     -Dcom.ibm.cics.jvmserver.wlp.autoconfigure=true
     -Dcom.ibm.cics.jvmserver.wlp.jdbc.driver.location=/usr/lpp/db2v12/jdbc
     ```
 where  ```/usr/lpp/db2v12/jdbc``` is the location of the DB2 JDBC and SQLJ drivers
+
+1. Edit the server.xml and the DB2 JCC driver to the Liberty global library:
+    ```xml
+    <library id="global">
+        <fileset dir="/usr/lpp/db2v12/jdbc/classes" includes="db2jcc4.jar"/>
+    </library>
+    ```
 
 ### To deploy the sample into a CICS region 
 1. Change the name of the JVMSERVER in the .warbundle file from DFHWLP to the name of the JVMSERVER resource defined in CICS. 
