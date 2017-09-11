@@ -29,19 +29,22 @@ The sample code can be deployed as an WAR file into a CICS Liberty JVM server. T
 1. Import the projects into CICS Explorer using **File -> Import -> General -> Existing** projects into workspace
 1. Resolve the build path errors on the Dynamic web project using the following menu from each project: **Build Path -> Configure Build Path -> Libraries -> Add Library -> CICS with Java EE and Liberty** and select the version of CICS TS for deployment (either CICS TS V5.3 or CICS TS V5.4)
 
+
 ### To configure CICS
 1. Create a Liberty JVM server as described in [4 easy steps](https://developer.ibm.com/cics/2015/06/04/starting-a-cics-liberty-jvm-server-in-4-easy-steps/)
+
 1. Edit the server.xml and the DB2 JCC driver to the Liberty global library:
-```xml
-<library id="global">
-    <fileset dir="/usr/lpp/db2v12/jdbc/classes" includes="db2jcc4.jar"/>
-</library>
-```
+    ```xml
+    <library id="global">
+        <fileset dir="/usr/lpp/db2v12/jdbc/classes" includes="db2jcc4.jar"/>
+    </library>
+    ```
+
 1. Add the following properties to the JVM profile to automatically configure the CICS default DataSource:
- ```
--Dcom.ibm.cics.jvmserver.wlp.autoconfigure=true
--Dcom.ibm.cics.jvmserver.wlp.jdbc.driver.location=/usr/lpp/db2v12/jdbc
-```
+     ```
+    -Dcom.ibm.cics.jvmserver.wlp.autoconfigure=true
+    -Dcom.ibm.cics.jvmserver.wlp.jdbc.driver.location=/usr/lpp/db2v12/jdbc
+    ```
 where  ```/usr/lpp/db2v12/jdbc``` is the location of the DB2 JDBC and SQLJ drivers
 
 ### To deploy the sample into a CICS region 
