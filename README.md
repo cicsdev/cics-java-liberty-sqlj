@@ -38,7 +38,7 @@ The sample code can be deployed as an WAR file into a CICS Liberty JVM server. T
     -Dcom.ibm.cics.jvmserver.wlp.autoconfigure=true
     -Dcom.ibm.cics.jvmserver.wlp.jdbc.driver.location=/usr/lpp/db2v12/jdbc
     ```
-where  ```/usr/lpp/db2v12/jdbc``` is the location of the DB2 JDBC and SQLJ drivers
+    where  ```/usr/lpp/db2v12/jdbc``` is the location of the DB2 JDBC and SQLJ drivers
 
 1. Edit the server.xml and add the DB2 JCC driver to the Liberty global library:
     ```xml
