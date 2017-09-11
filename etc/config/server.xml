@@ -14,7 +14,7 @@
     <!-- CICS Bundle Installed Applications -->
     <include location="${server.output.dir}/installedApps.xml"/>
 
-    <!-- DataSource with type 2 JDBC driver - CICS 5.4 -->
+    <!-- DataSource with type 2 JDBC driver - CICS TS 5.4 or later -->
 	<dataSource id="defaultCICSDataSource" jndiName="jdbc/defaultCICSDataSource" transactional="false">
 		<jdbcDriver libraryRef="defaultCICSDb2Library"/>	
 		<properties.db2.jcc driverType="2"/>	
@@ -26,5 +26,10 @@
 		<fileset dir="/usr/lpp/db2v12/jdbc/classes" includes="db2jcc4.jar db2jcc_license_cisuz.jar"/>	
 		<fileset dir="/usr/lpp/db2v12/jdbc/lib" includes="libdb2jcct2zos4_64.so"/>
 	</library>
+	
+	<!-- LIberty global library -->
+	<library id="global">
+        <fileset dir="/usr/lpp/db2v12/jdbc/classes" includes="db2jcc4.jar"/>
+    </library>
 
 </server>
