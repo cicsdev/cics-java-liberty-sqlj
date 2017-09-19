@@ -43,7 +43,7 @@ The sample code can be deployed as an WAR file into a CICS Liberty JVM server. T
     ```
     where  ```/usr/lpp/db2v12/jdbc``` is the location of the DB2 JDBC and SQLJ drivers
 
-1. Edit the server.xml and add the DB2 JCC driver to the Liberty global library:
+1. Edit the server.xml and add the DB2 JCC driver to the Liberty global library as shown in the supplied [`sample`](etc/config/server.xml):
     ```xml
     <library id="global">
         <fileset dir="/usr/lpp/db2v12/jdbc/classes" includes="db2jcc4.jar"/>
