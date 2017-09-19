@@ -27,7 +27,7 @@
 		<fileset dir="/usr/lpp/db2v12/jdbc/lib" includes="libdb2jcct2zos4_64.so"/>
 	</library>
 	
-	<!-- LIberty global library -->
+	<!-- Liberty global library -->
 	<library id="global">
         <fileset dir="/usr/lpp/db2v12/jdbc/classes" includes="db2jcc4.jar"/>
     </library>
