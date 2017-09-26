@@ -21,6 +21,7 @@ DB2 by obtaining a DataSource via a JNDI lookup and that uses SQLJ and returns t
 * Java SE 7 or later on the z/OS system
 * IBM Db2 for z/OS
 * CICS Explorer V5.4 with the IBM CICS SDK for Java EE and Liberty feature installed [available here](https://developer.ibm.com/mainframe/products/downloads)
+* IBM Data Studio Version 4.1.x [available here](https://www.ibm.com/developerworks/downloads/im/data)
 
 ## Configuration
 The sample code can be deployed as an WAR file into a CICS Liberty JVM server. The SimpleSQLJServlet servlet can then be used to display the current timestam from DB2
@@ -28,6 +29,8 @@ The sample code can be deployed as an WAR file into a CICS Liberty JVM server. T
 ### To import the samples into Eclipse
 1. Import the projects into CICS Explorer using **File -> Import -> General -> Existing** projects into workspace
 1. Resolve the build path errors on the Dynamic web project using the following menu from each project: **Build Path -> Configure Build Path -> Libraries -> Add Library -> CICS with Java EE and Liberty** and select the version of CICS TS for deployment (either CICS TS V5.3 or CICS TS V5.4)
+
+**NOTE** The Dynamic web project has `SQLJ support` and when imported into Eclipse, the `Java Resources` folder has a [`src`](projects/com.ibm.cicsdev.sqlj.web/src) folder.  This contains both `.java` and `.sqlj` source files. Additionally, there is a [`SQLJJavaSource`](projects/com.ibm.cicsdev.sqlj.web/SQLJJavaSource) folder.  This contains the Java source and serialized profile (`.ser`) files which are generated automatically by the tooling from the `.sqlj` source. 
 
 
 ### To configure CICS
@@ -40,7 +43,7 @@ The sample code can be deployed as an WAR file into a CICS Liberty JVM server. T
     ```
     where  ```/usr/lpp/db2v12/jdbc``` is the location of the DB2 JDBC and SQLJ drivers
 
-1. Edit the server.xml and add the DB2 JCC driver to the Liberty global library:
+1. Edit the server.xml and add the DB2 JCC driver to the Liberty global library as shown in the supplied [`sample`](etc/config/server.xml):
     ```xml
     <library id="global">
         <fileset dir="/usr/lpp/db2v12/jdbc/classes" includes="db2jcc4.jar"/>
