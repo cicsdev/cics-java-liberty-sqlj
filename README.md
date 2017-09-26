@@ -33,17 +33,25 @@ The sample code can be deployed as a WAR file into a CICS Liberty JVM server. Th
 **Note**: The Dynamic web project has `SQLJ support` and when imported into Eclipse, the `Java Resources` folder has a [`src`](projects/com.ibm.cicsdev.sqlj.web/src) folder.  This contains both `.java` and `.sqlj` source files. Additionally, there is a [`SQLJJavaSource`](projects/com.ibm.cicsdev.sqlj.web/SQLJJavaSource) folder.  This contains the Java source and serialized profile (`.ser`) files which are generated automatically by the Data Studio tooling from the `.sqlj` source. 
 
 
-### To configure CICS
+### To configure CICS for JDBC type 2 connectivity to DB2
 1. Create a Liberty JVM server as described in [4 easy steps](https://developer.ibm.com/cics/2015/06/04/starting-a-cics-liberty-jvm-server-in-4-easy-steps/)
 
-1. Add the following properties to the JVM profile to automatically configure the Liberty server.xml with the CICS default data source
+1. Update the CICS STEPLIB with the DB2 SDSNLOAD and SDSNLOD2libraries
+
+1. Configure CICS DB2CONN, DB2TRAN and DB2ENTRY resource definitions as required see [How you can define the CICS DB2 connection](https://www.ibm.com/support/knowledgecenter/en/SSGMCP_5.4.0/configuring/databases/dfhtk2c.html)
+
+1. Bind the DB2 plan that is specified in the CICS DB2CONN or DB2ENTRY definition with a PKLIST of NULLID.* 
+
+1. Add the following properties in the JVM profile to set the location of the DB2 drivers to allow CICS to automatically configure the default DataSource 
+
      ```
     -Dcom.ibm.cics.jvmserver.wlp.autoconfigure=true
     -Dcom.ibm.cics.jvmserver.wlp.jdbc.driver.location=/usr/lpp/db2v12/jdbc
     ```
     where  ```/usr/lpp/db2v12/jdbc``` is the location of the DB2 JDBC and SQLJ drivers
 
-1. Edit the server.xml and add the DB2 JCC driver to the Liberty global library as shown in the supplied sample [`server.xml`](etc/config/server.xml):
+1. Edit the server.xml and add the DB2 JCC driver to the Liberty global library as shown in the supplied sample [`server.xml`](etc/config/server.xml). 
+This enables Web applications to access the required SQLJ Java packages.
     ```xml
     <library id="global">
         <fileset dir="/usr/lpp/db2v12/jdbc/classes" includes="db2jcc4.jar"/>
@@ -70,3 +78,4 @@ If the test is successful, you will see the a response similar to the following 
 
 ## License
 This project is licensed under [Apache License Version 2.0](LICENSE).
+
