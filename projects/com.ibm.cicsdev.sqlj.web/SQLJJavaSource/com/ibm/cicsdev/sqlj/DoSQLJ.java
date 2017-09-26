@@ -131,27 +131,28 @@ implements sqlj.runtime.PositionedIterator
 /*@lineinfo:user-code*//*@lineinfo:23^30*/
 	protected Cursor1 cursor1 = null;
 	protected UserContext userContext;
-	
+
 	private DataSource dataSource;
 
 	public DoSQLJ() throws Exception {
-		
+
 		// Use JNDI to find the dataSource
 		Context initialContext = new InitialContext();
-		dataSource = (DataSource) initialContext.lookup("jdbc/defaultCICSDataSource");		
+		dataSource = (DataSource) initialContext
+				.lookup("jdbc/defaultCICSDataSource");
 	}
-	
+
 	public String getCurrentTimestamp() throws SQLException {
-	
+
 		String currentTimeStamp = null;
 
 		// Obtain a DataSource Connection
 		Connection connection = dataSource.getConnection();
-		
+
 		userContext = new UserContext(connection);
-		
+
 		// Execute the SQL
-		/*@lineinfo:generated-code*//*@lineinfo:46^2*/
+		/*@lineinfo:generated-code*//*@lineinfo:47^2*/
 
 //  ************************************************************
 //  #sql [userContext] cursor1 = { SELECT CURRENT TIMESTAMP FROM SYSIBM.SYSDUMMY1 };
@@ -178,13 +179,14 @@ implements sqlj.runtime.PositionedIterator
 
 //  ************************************************************
 
-/*@lineinfo:user-code*//*@lineinfo:46^78*/
-		
+/*@lineinfo:user-code*//*@lineinfo:47^78*/
+
 		// Get the results
 		if (!cursor1.next()) {
-			throw new SQLException("Error: SQL query did not return any results");
+			throw new SQLException(
+					"Error: SQL query did not return any results");
 		}
-		
+
 		currentTimeStamp = cursor1.getResultSet().getString(1);
 
 		// Commit
@@ -192,7 +194,7 @@ implements sqlj.runtime.PositionedIterator
 
 		// Close the connection
 		connection.close();
-		
+
 		// Return the user
 		return currentTimeStamp;
 	}

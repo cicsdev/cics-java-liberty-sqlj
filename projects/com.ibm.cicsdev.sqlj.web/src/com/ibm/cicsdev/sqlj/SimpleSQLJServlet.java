@@ -28,9 +28,8 @@ import javax.servlet.http.HttpServletResponse;
 public class SimpleSQLJServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-
 	private DoSQLJ doSQLJ;
-	
+
 	/**
 	 * @see Servlet#init(ServletConfig)
 	 */
@@ -40,18 +39,21 @@ public class SimpleSQLJServlet extends HttpServlet {
 		} catch (Exception e) {
 			throw new ServletException(e);
 		}
-	} 
-	
+	}
+
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/plain");
 		PrintWriter out = response.getWriter();
 		String currentTimeStamp;
 		try {
 			currentTimeStamp = doSQLJ.getCurrentTimestamp();
-			out.println("SimpleSQLJServlet: DB2 CurrentTimeStamp = " + currentTimeStamp);
+			out.println("SimpleSQLJServlet: DB2 CurrentTimeStamp = "
+					+ currentTimeStamp);
 		} catch (SQLException e) {
 			throw new ServletException(e);
 		}

@@ -23,33 +23,35 @@ public class DoSQLJ {
 	#sql iterator Cursor1 (String);
 	protected Cursor1 cursor1 = null;
 	protected UserContext userContext;
-	
+
 	private DataSource dataSource;
 
 	public DoSQLJ() throws Exception {
-		
+
 		// Use JNDI to find the dataSource
 		Context initialContext = new InitialContext();
-		dataSource = (DataSource) initialContext.lookup("jdbc/defaultCICSDataSource");		
+		dataSource = (DataSource) initialContext
+				.lookup("jdbc/defaultCICSDataSource");
 	}
-	
+
 	public String getCurrentTimestamp() throws SQLException {
-	
+
 		String currentTimeStamp = null;
 
 		// Obtain a DataSource Connection
 		Connection connection = dataSource.getConnection();
-		
+
 		userContext = new UserContext(connection);
-		
+
 		// Execute the SQL
 		#sql [userContext] cursor1 = {SELECT CURRENT TIMESTAMP FROM SYSIBM.SYSDUMMY1};
-		
+
 		// Get the results
 		if (!cursor1.next()) {
-			throw new SQLException("Error: SQL query did not return any results");
+			throw new SQLException(
+					"Error: SQL query did not return any results");
 		}
-		
+
 		currentTimeStamp = cursor1.getResultSet().getString(1);
 
 		// Commit
@@ -57,7 +59,7 @@ public class DoSQLJ {
 
 		// Close the connection
 		connection.close();
-		
+
 		// Return the user
 		return currentTimeStamp;
 	}
