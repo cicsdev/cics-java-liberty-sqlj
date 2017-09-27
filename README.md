@@ -24,7 +24,7 @@ DB2 by obtaining a DataSource via a JNDI lookup and that uses SQLJ and returns t
 IBM Data Studio Version 4.1.x [available here](https://www.ibm.com/developerworks/downloads/im/data) installed
 
 ## Configuration
-The sample code can be deployed as a WAR file into a CICS Liberty JVM server. The SimpleSQLJServlet servlet can then be used to display the current timestam from DB2
+The sample code can be deployed as a WAR file into a CICS Liberty JVM server. The SimpleSQLJServlet servlet can then be used to display the current timestamp from DB2
 
 ### To import the samples into Eclipse
 1. Import the projects into CICS Explorer using **File -> Import -> General -> Existing** projects into workspace
@@ -36,9 +36,9 @@ The sample code can be deployed as a WAR file into a CICS Liberty JVM server. Th
 ### To configure CICS for JDBC type 2 connectivity to DB2
 1. Create a Liberty JVM server as described in [4 easy steps](https://developer.ibm.com/cics/2015/06/04/starting-a-cics-liberty-jvm-server-in-4-easy-steps/)
 
-1. Update the CICS STEPLIB with the DB2 SDSNLOAD and SDSNLOD2libraries
+1. Update the CICS STEPLIB with the DB2 SDSNLOAD and SDSNLOD2 libraries
 
-1. Configure CICS DB2CONN, DB2TRAN and DB2ENTRY resource definitions as required see [How you can define the CICS DB2 connection](https://www.ibm.com/support/knowledgecenter/en/SSGMCP_5.4.0/configuring/databases/dfhtk2c.html)
+1. Configure CICS DB2CONN, DB2TRAN and DB2ENTRY resource definitions as required in [How you can define the CICS DB2 connection](https://www.ibm.com/support/knowledgecenter/en/SSGMCP_5.4.0/configuring/databases/dfhtk2c.html)
 
 1. Bind the DB2 plan that is specified in the CICS DB2CONN or DB2ENTRY definition with a PKLIST of NULLID.* 
 
@@ -59,9 +59,11 @@ This enables Web applications to access the required SQLJ Java packages.
     ```
 
 ### To deploy the sample into a CICS region 
-1. Change the name of the JVMSERVER in the .warbundle file from DFHWLP to the name of the JVMSERVER resource defined in CICS. 
-1. Using the CICS Explorer export the ```com.ibm.cicsdev.jdbc.web.cicsbundle``` project to a zFS directory. 
-1. Define and install a CICS BUNDLE resource definition referring to the deployed bundle directory on zFS in step 2, and ensure all resources are enabled. 
+1. Optionally, change the name of the JVMSERVER in the .warbundle file in the com.ibm.cicsdev.sqlj.web.cicsbundle project from DFHWLP to the name of the JVMSERVER resource defined in CICS
+
+1. Using the CICS Explorer export the ```com.ibm.cicsdev.jdbc.web.cicsbundle``` project to a zFS directory
+
+1. Define and install a CICS BUNDLE resource definition referring to the deployed bundle directory on zFS in step 2, and ensure all resources are enabled
 
 ## Running the sample
 * The servlet is accessed with the following URL:
