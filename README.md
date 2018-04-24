@@ -17,20 +17,23 @@ DB2 by obtaining a DataSource via a JNDI lookup and that uses SQLJ and returns t
 * `com.ibm.cicsdev.sqlj.web.cicsbundle` - CICS bundle project that references the WAR (Dynamic web project) bundle part for deployment in a CICS bundle
 
 ## Pre-requisites
-* CICS TS V5.3 with APAR PI67640 and APAR PI58375, or CICS TS V5.4
+* CICS TS V5.3 with APAR PI77502, or CICS TS V5.4
 * Java SE 7 or later on the z/OS system
 * IBM Db2 for z/OS
 * CICS Explorer V5.4 with the IBM CICS SDK for Java EE and Liberty feature installed [available here](https://developer.ibm.com/mainframe/products/downloads) and 
-IBM Data Studio Version 4.1.x [available here](https://www.ibm.com/developerworks/downloads/im/data) installed
+IBM Data Studio Version 4.1.3 [available here](https://www.ibm.com/developerworks/downloads/im/data) with DS APAR1 installed, [available here] (http://www.ibm.com/support/fixcentral/quickorder?product=ibm%2FInformation+Management%2FIBM+Data+Studio&fixids=DS_413_APAR1_v20180413_0111&source=SAR)
 
 ## Configuration
-The sample code can be deployed as a WAR file into a CICS Liberty JVM server. The SimpleSQLJServlet servlet can then be used to display the current timestamp from DB2
+The sample code can be deployed as a WAR file into a CICS Liberty JVM server.  CICS Liberty can be configured to use either a local DB2 database with 
+JDBC type 2 connectivity,  or a remote database with a JDBC type 4 connectivity. The SimpleSQLJServlet servlet can then be used to display the current timestamp from DB2
 
 ### To import the samples into Eclipse
 1. Import the projects into CICS Explorer using **File -> Import -> General -> Existing** projects into workspace
 1. Resolve the build path errors on the Dynamic web project using the following menu from each project: **Build Path -> Configure Build Path -> Libraries -> Add Library -> CICS with Java EE and Liberty** and select the version of CICS TS for deployment (either CICS TS V5.3 or CICS TS V5.4)
 
 **Note**: The Dynamic web project has `SQLJ support` and when imported into Eclipse, the `Java Resources` folder has a [`src`](projects/com.ibm.cicsdev.sqlj.web/src) folder.  This contains both `.java` and `.sqlj` source files. Additionally, there is a [`SQLJJavaSource`](projects/com.ibm.cicsdev.sqlj.web/SQLJJavaSource) folder.  This contains the Java source and serialized profile (`.ser`) files which are generated automatically by the Data Studio tooling from the `.sqlj` source. 
+Where  ```/usr/lpp/db2v12/jdbc``` is the location of the DB2 JDBC driver
+
 
 
 ### To configure CICS for JDBC type 2 connectivity to DB2
@@ -58,6 +61,9 @@ This enables Web applications to access the required SQLJ Java packages.
     </library>
     ```
 
+An example Liberty server configuration of a DataSource with a type 2 connection is supplied in [etc/config/type-2-server.xml](etc/config/type-2-server.xml). Configuration with DataSource and a type 4 connection is in [etc/config/type-4-server.xml](etc/config/type-4-server.xml)
+
+	
 ### To deploy the sample into a CICS region 
 1. Optionally, change the name of the JVMSERVER in the .warbundle file in the com.ibm.cicsdev.sqlj.web.cicsbundle project from DFHWLP to the name of the JVMSERVER resource defined in CICS
 
