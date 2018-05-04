@@ -32,7 +32,6 @@ JDBC type 2 connectivity,  or a remote database with a JDBC type 4 connectivity.
 1. Resolve the build path errors on the Dynamic web project using the following menu from each project: **Build Path -> Configure Build Path -> Libraries -> Add Library -> CICS with Java EE and Liberty** and select the version of CICS TS for deployment (either CICS TS V5.3 or CICS TS V5.4)
 
 **Note**: The Dynamic web project has `SQLJ support` and when imported into Eclipse, the `Java Resources` folder has a [`src`](projects/com.ibm.cicsdev.sqlj.web/src) folder.  This contains both `.java` and `.sqlj` source files. Additionally, there is a [`SQLJJavaSource`](projects/com.ibm.cicsdev.sqlj.web/SQLJJavaSource) folder.  This contains the Java source and serialized profile (`.ser`) files which are generated automatically by the Data Studio tooling from the `.sqlj` source. 
-Where  ```/usr/lpp/db2v12/jdbc``` is the location of the DB2 JDBC driver
 
 
 

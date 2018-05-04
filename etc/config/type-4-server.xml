@@ -17,17 +17,17 @@
 				    portNumber="<port>"
 				    user="<userid>"
 				    password="<password>" />
-	</dataSource>
+    </dataSource>
 
-	<!-- Library DB2 JDBC Driver -->
-	<library id="defaultCICSDb2Library">
-		<fileset dir="/usr/lpp/db2v12/jdbc/classes" includes="db2jcc_license_cisuz.jar"/>
-		<fileset dir="/usr/lpp/db2v12/jdbc/lib" includes="libdb2jcct2zos4_64.so"/>
-	</library>
+    <!-- Library DB2 JDBC Driver -->
+    <library id="defaultCICSDb2Library">
+        <fileset dir="/usr/lpp/db2v12/jdbc/classes" includes="db2jcc_license_cisuz.jar"/>
+        <fileset dir="/usr/lpp/db2v12/jdbc/lib" includes="libdb2jcct2zos4_64.so"/>
+    </library>
 	
     <!-- Liberty global library -->
     <library id="global">
-        <fileset dir="/usr/lpp/db2v12/jdbc/classes" includes="db2jcc4.jar"/>
+	    <fileset dir="/usr/lpp/db2v12/jdbc/classes" includes="db2jcc4.jar"/>
     </library>
 
 </server>
