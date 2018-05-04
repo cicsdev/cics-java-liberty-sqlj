@@ -3,7 +3,6 @@
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/.apt_generated"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/SQLJJavaSource"/>
         <property name="context-root" value="com.ibm.cicsdev.sqlj.web"/>
         <property name="java-output-path" value="/com.ibm.cicsdev.sqlj.web/WebContent/WEB-INF/classes"/>
     </wb-module>

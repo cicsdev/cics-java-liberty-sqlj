@@ -33,10 +33,6 @@ JDBC type 2 connectivity,  or a remote database with a JDBC type 4 connectivity.
 and create a `SQLJJavaSource` folder containing the Java source and serialized profile (`.ser`) file  which are generated automatically by the Data Studio tooling from the `.sqlj` source. 
 1. Resolve the remaining build path errors on the Dynamic web project using the following menu: **Build Path -> Configure Build Path -> Libraries -> Add Library -> CICS with Java EE and Liberty** and select the version of CICS TS for deployment (either CICS TS V5.3 or CICS TS V5.4)
 
-
-
-
-
 ### To configure CICS for JDBC type 2 connectivity to DB2
 1. Create a Liberty JVM server as described in [4 easy steps](https://developer.ibm.com/cics/2015/06/04/starting-a-cics-liberty-jvm-server-in-4-easy-steps/)
 
