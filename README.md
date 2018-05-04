@@ -13,7 +13,7 @@ Sample SQLJ Java EE web application demonstrating how to use a SQLJ in a web ser
 ## Samples overview
 
 * `com.ibm.cicsdev.sqlj.web` - Dynamic web project containing the SimpleSQLJServlet servlet.  The servlet uses the DoSQLJ class which connects to 
-DB2 by obtaining a DataSource via a JNDI lookup and that uses SQLJ and returns the current DB2 timestamp from the DB2 SYSIBM.SYSDUMMY1 table
+DB2 by obtaining a DataSource via a JNDI lookup. It then uses SQLJ and returns the current DB2 timestamp from the DB2 SYSIBM.SYSDUMMY1 table
 * `com.ibm.cicsdev.sqlj.web.cicsbundle` - CICS bundle project that references the WAR (Dynamic web project) bundle part for deployment in a CICS bundle
 
 ## Pre-requisites
@@ -29,7 +29,8 @@ JDBC type 2 connectivity,  or a remote database with a JDBC type 4 connectivity.
 
 ### To import the samples into Eclipse
 1. Import the projects into CICS Explorer using **File -> Import -> General -> Existing** projects into workspace
-1. Resolve the build path errors on the Dynamic web project using the following menu from each project: **Build Path -> Configure Build Path -> Libraries -> Add Library -> CICS with Java EE and Liberty** and select the version of CICS TS for deployment (either CICS TS V5.3 or CICS TS V5.4)
+1. Add SQLJ support to the dynamic web project `com.ibm.cicsdev.sqlj.web` using the context menu **Add SQLJ support**. This will add the DataStudio sqlj.zip file to the build path.
+1. Resolve the remaining build path errors on the Dynamic web project using the following menu: **Build Path -> Configure Build Path -> Libraries -> Add Library -> CICS with Java EE and Liberty** and select the version of CICS TS for deployment (either CICS TS V5.3 or CICS TS V5.4)
 
 **Note**: The Dynamic web project has `SQLJ support` and when imported into Eclipse, the `Java Resources` folder has a [`src`](projects/com.ibm.cicsdev.sqlj.web/src) folder.  This contains both `.java` and `.sqlj` source files. Additionally, there is a [`SQLJJavaSource`](projects/com.ibm.cicsdev.sqlj.web/SQLJJavaSource) folder.  This contains the Java source and serialized profile (`.ser`) files which are generated automatically by the Data Studio tooling from the `.sqlj` source. 
 
@@ -44,7 +45,7 @@ JDBC type 2 connectivity,  or a remote database with a JDBC type 4 connectivity.
 
 1. Bind the DB2 plan that is specified in the CICS DB2CONN or DB2ENTRY definition with a PKLIST of NULLID.* 
 
-1. Add the following properties in the JVM profile to set the location of the DB2 drivers to allow CICS to automatically configure the default DataSource 
+1. Add the following properties in the JVM profile to set the location of the DB2 drivers to allow CICS to automatically configure the default data source 
 
      ```
     -Dcom.ibm.cics.jvmserver.wlp.autoconfigure=true
@@ -52,7 +53,7 @@ JDBC type 2 connectivity,  or a remote database with a JDBC type 4 connectivity.
     ```
     where  ```/usr/lpp/db2v12/jdbc``` is the location of the DB2 JDBC and SQLJ drivers
 
-1. Edit the server.xml and add the DB2 JCC driver to the Liberty global library as shown in the supplied sample [`server.xml`](etc/config/server.xml). 
+1. Edit the server.xml and add the DB2 JCC driver to the Liberty global library as shown in the supplied sample server.xml. 
 This enables Web applications to access the required SQLJ Java packages.
     ```xml
     <library id="global">
@@ -60,7 +61,7 @@ This enables Web applications to access the required SQLJ Java packages.
     </library>
     ```
 
-An example Liberty server configuration of a DataSource with a type 2 connection is supplied in [etc/config/type-2-server.xml](etc/config/type-2-server.xml). Configuration with DataSource and a type 4 connection is in [etc/config/type-4-server.xml](etc/config/type-4-server.xml)
+An example Liberty server configuration of a data source with a type 2 connection is supplied in [etc/config/type-2-server.xml](etc/config/type-2-server.xml). Configuration with a data source and a type 4 connection is in [etc/config/type-4-server.xml](etc/config/type-4-server.xml)
 
 	
 ### To deploy the sample into a CICS region 
