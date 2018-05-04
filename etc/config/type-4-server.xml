@@ -2,17 +2,17 @@
 <server description="CICS Liberty profile JDBC configuration">
 
 	<!-- Enable features -->
-	<featureManager>
-		<feature>cicsts:core-1.0</feature>
-		<feature>jsp-2.3</feature>
-		<feature>jdbc-4.1</feature>
-	</featureManager>
+    <featureManager>
+        <feature>cicsts:core-1.0</feature>
+        <feature>jsp-2.3</feature>
+        <feature>jdbc-4.1</feature>
+    </featureManager>
 
-	<!-- DataSource with type 4 JDBC driver -->
-	<dataSource id="type4" jndiName="jdbc/defaultCICSDataSource" type="javax.sql.XADataSource" >
-		<jdbcDriver libraryRef="defaultCICSDb2Library"/>
-		<properties.db2.jcc driverType="4" 
-				    databaseName="<database>"
+    <!-- DataSource with type 4 JDBC driver -->
+    <dataSource id="type4" jndiName="jdbc/defaultCICSDataSource" type="javax.sql.XADataSource" >
+        <jdbcDriver libraryRef="defaultCICSDb2Library"/>
+        <properties.db2.jcc driverType="4" 
+					databaseName="<database>"
 				    serverName="localhost"
 				    portNumber="<port>"
 				    user="<userid>"
