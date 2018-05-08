@@ -21,7 +21,7 @@ Db2 by obtaining a DataSource via a JNDI lookup. It then uses SQLJ and returns t
 * Java SE 7 or later on the z/OS system
 * IBM Db2 for z/OS
 * CICS Explorer V5.4 with the IBM CICS SDK for Java EE and Liberty feature installed [available here](https://developer.ibm.com/mainframe/products/downloads) and 
-IBM Data Studio Version 4.1.3 [available here](https://www.ibm.com/developerworks/downloads/im/data) with DS APAR1 installed, [available here](http://www.ibm.com/support/fixcentral/quickorder?product=ibm%2FInformation+Management%2FIBM+Data+Studio&fixids=DS_413_APAR1_v20180413_0111&source=SAR)
+IBM Data Studio Version 4.1.3 [available here](https://www.ibm.com/developerworks/downloads/im/data) with APAR1 installed, [available here](http://www.ibm.com/support/fixcentral/quickorder?product=ibm%2FInformation+Management%2FIBM+Data+Studio&fixids=DS_413_APAR1_v20180413_0111&source=SAR)
 
 ## Configuration
 The sample code can be deployed as a WAR file into a CICS Liberty JVM server.  CICS Liberty can be configured to use either a local Db2 database with 
