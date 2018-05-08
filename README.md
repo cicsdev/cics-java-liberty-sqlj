@@ -8,7 +8,7 @@ Sample SQLJ Java EE web application demonstrating how to use SQLJ in a web servl
 ## Repository structure
 
 * [`projects/`](projects) - Eclipse projects suitable for importing into a CICS Explorer environment.
-* [`etc/`](etc) - Liberty server configuration file
+* [`etc/`](etc) - Liberty server configuration file samples 
 
 ## Samples overview
 
