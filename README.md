@@ -1,7 +1,7 @@
 cics-java-liberty-sqlj
 =====================
 
-Sample SQLJ Java EE web application demonstrating how to use a SQLJ in a web servlet to access DB2.
+Sample SQLJ Java EE web application demonstrating how to use SQLJ in a web servlet to access Db2.
 
 
 
@@ -13,7 +13,7 @@ Sample SQLJ Java EE web application demonstrating how to use a SQLJ in a web ser
 ## Samples overview
 
 * `com.ibm.cicsdev.sqlj.web` - Dynamic web project containing the SimpleSQLJServlet servlet.  The servlet uses the DoSQLJ class which connects to 
-DB2 by obtaining a DataSource via a JNDI lookup. It then uses SQLJ and returns the current DB2 timestamp from the DB2 SYSIBM.SYSDUMMY1 table
+Db2 by obtaining a DataSource via a JNDI lookup. It then uses SQLJ and returns the current Db2 timestamp from the Db2 SYSIBM.SYSDUMMY1 table
 * `com.ibm.cicsdev.sqlj.web.cicsbundle` - CICS bundle project that references the WAR (Dynamic web project) bundle part for deployment in a CICS bundle
 
 ## Pre-requisites
@@ -24,8 +24,8 @@ DB2 by obtaining a DataSource via a JNDI lookup. It then uses SQLJ and returns t
 IBM Data Studio Version 4.1.3 [available here](https://www.ibm.com/developerworks/downloads/im/data) with DS APAR1 installed, [available here](http://www.ibm.com/support/fixcentral/quickorder?product=ibm%2FInformation+Management%2FIBM+Data+Studio&fixids=DS_413_APAR1_v20180413_0111&source=SAR)
 
 ## Configuration
-The sample code can be deployed as a WAR file into a CICS Liberty JVM server.  CICS Liberty can be configured to use either a local DB2 database with 
-JDBC type 2 connectivity,  or a remote database with a JDBC type 4 connectivity. The SimpleSQLJServlet servlet can then be used to display the current timestamp from DB2
+The sample code can be deployed as a WAR file into a CICS Liberty JVM server.  CICS Liberty can be configured to use either a local Db2 database with 
+JDBC type 2 connectivity,  or a remote database with a JDBC type 4 connectivity. The SimpleSQLJServlet servlet can then be used to display the current timestamp from Db2
 
 ### To import the samples into Eclipse
 1. Import the projects into CICS Explorer using **File -> Import -> General -> Existing** projects into workspace
@@ -33,24 +33,24 @@ JDBC type 2 connectivity,  or a remote database with a JDBC type 4 connectivity.
 and create a `SQLJJavaSource` folder containing the Java source and serialized profile (`.ser`) file  which are generated automatically by the Data Studio tooling from the `.sqlj` source. 
 1. Resolve the remaining build path errors on the Dynamic web project using the following menu: **Build Path -> Configure Build Path -> Libraries -> Add Library -> CICS with Java EE and Liberty** and select the version of CICS TS for deployment (either CICS TS V5.3 or CICS TS V5.4)
 
-### To configure CICS for JDBC type 2 connectivity to DB2
+### To configure CICS for JDBC type 2 connectivity to Db2
 1. Create a Liberty JVM server as described in [4 easy steps](https://developer.ibm.com/cics/2015/06/04/starting-a-cics-liberty-jvm-server-in-4-easy-steps/)
 
-1. Update the CICS STEPLIB with the DB2 SDSNLOAD and SDSNLOD2 libraries
+1. Update the CICS STEPLIB with the Db2 SDSNLOAD and SDSNLOD2 libraries
 
-1. Configure CICS DB2CONN, DB2TRAN and DB2ENTRY resource definitions as required in [How you can define the CICS DB2 connection](https://www.ibm.com/support/knowledgecenter/en/SSGMCP_5.4.0/configuring/databases/dfhtk2c.html)
+1. Configure CICS DB2CONN, DB2TRAN and DB2ENTRY resource definitions as required in [How you can define the CICS Db2 connection](https://www.ibm.com/support/knowledgecenter/en/SSGMCP_5.4.0/configuring/databases/dfhtk2c.html)
 
-1. Bind the DB2 plan that is specified in the CICS DB2CONN or DB2ENTRY definition with a PKLIST of NULLID.* 
+1. Bind the Db2 plan that is specified in the CICS DB2CONN or DB2ENTRY definition with a PKLIST of NULLID.* 
 
-1. Add the following properties in the JVM profile to set the location of the DB2 drivers to allow CICS to automatically configure the default data source 
+1. Add the following properties in the JVM profile to set the location of the Db2 drivers to allow CICS to automatically configure the default data source 
 
      ```
     -Dcom.ibm.cics.jvmserver.wlp.autoconfigure=true
     -Dcom.ibm.cics.jvmserver.wlp.jdbc.driver.location=/usr/lpp/db2v12/jdbc
     ```
-    where  ```/usr/lpp/db2v12/jdbc``` is the location of the DB2 JDBC and SQLJ drivers
+    where  ```/usr/lpp/db2v12/jdbc``` is the location of the Db2 JDBC and SQLJ drivers
 
-1. Edit the server.xml and add the DB2 JCC driver to the Liberty global library as shown in the supplied sample server.xml. 
+1. Edit the server.xml and add the Db2 JCC driver to the Liberty global library as shown in the supplied sample server.xml. 
 This enables Web applications to access the required SQLJ Java packages.
     ```xml
     <library id="global">
@@ -74,12 +74,12 @@ An example Liberty server configuration of a data source with a type 2 connectio
 
 If the test is successful, you will see the a response similar to the following written to the browser:  
 
-`SimpleSQLJServlet: DB2 CurrentTimeStamp = 2017-08-02 11:28:46.18055`
+`SimpleSQLJServlet: Db2 CurrentTimeStamp = 2017-08-02 11:28:46.18055`
 
 ## Reference
 *  Sample JDBC Git repository  [cics-java-liberty-jdbc](https://github.com/cicsdev/cics-java-liberty-jdbc)
 *  CICS Knowledge Center [Configuring a Liberty JVM server](https://www.ibm.com/support/knowledgecenter/SSGMCP_5.4.0/configuring/java/config_jvmserver_liberty.html)
-*  CICS Knowledge Center [Configuring a JVM server to support DB2](https://www.ibm.com/support/knowledgecenter/en/SSGMCP_5.4.0/applications/developing/database/dfhtk4b.html)
+*  CICS Knowledge Center [Configuring a JVM server to support Db2](https://www.ibm.com/support/knowledgecenter/en/SSGMCP_5.4.0/applications/developing/database/dfhtk4b.html)
 
 ## License
 This project is licensed under [Apache License Version 2.0](LICENSE).
