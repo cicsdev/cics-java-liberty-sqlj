@@ -34,11 +34,11 @@ and create a `SQLJJavaSource` folder containing the Java source and serialized p
 1. Resolve the remaining build path errors on the Dynamic web project using the following menu: **Build Path -> Configure Build Path -> Libraries -> Add Library -> CICS with Java EE and Liberty** and select the version of CICS TS for deployment (either CICS TS V5.3 or CICS TS V5.4)
 
 ### To configure CICS for JDBC type 2 connectivity to Db2
-1. Create a Liberty JVM server as described in [4 easy steps](https://developer.ibm.com/cics/2015/06/04/starting-a-cics-liberty-jvm-server-in-4-easy-steps/)
+1. Create a Liberty JVM server as documentated in [Configuring a Liberty JVM server](https://www.ibm.com/docs/en/cics-ts/5.4.0?topic=server-configuring-liberty-jvm)
 
 1. Update the CICS STEPLIB with the Db2 SDSNLOAD and SDSNLOD2 libraries
 
-1. Configure CICS DB2CONN, DB2TRAN and DB2ENTRY resource definitions as required in [How you can define the CICS Db2 connection](https://www.ibm.com/support/knowledgecenter/en/SSGMCP_5.4.0/configuring/databases/dfhtk2c.html)
+1. Configure CICS DB2CONN, DB2TRAN and DB2ENTRY resource definitions as required in [How you can define the CICS Db2 connection](https://www.ibm.com/docs/en/cics-ts/5.4.0?topic=sources-defining-cics-db2-connection)
 
 1. Bind the Db2 plan that is specified in the CICS DB2CONN or DB2ENTRY definition with a PKLIST of NULLID.* 
 
@@ -77,9 +77,9 @@ If the test is successful, you will see the a response similar to the following 
 `SimpleSQLJServlet: Db2 CurrentTimeStamp = 2017-08-02 11:28:46.18055`
 
 ## Reference
-*  Sample JDBC Git repository  [cics-java-liberty-jdbc](https://github.com/cicsdev/cics-java-liberty-jdbc)
-*  CICS Knowledge Center [Configuring a Liberty JVM server](https://www.ibm.com/support/knowledgecenter/SSGMCP_5.4.0/configuring/java/config_jvmserver_liberty.html)
-*  CICS Knowledge Center [Configuring a JVM server to support Db2](https://www.ibm.com/support/knowledgecenter/en/SSGMCP_5.4.0/applications/developing/database/dfhtk4b.html)
+*  Sample JDBC Git repository [cics-java-liberty-jdbc](https://github.com/cicsdev/cics-java-liberty-jdbc)
+*  CICS documentation [Configuring a Liberty JVM server](https://www.ibm.com/docs/en/cics-ts/5.4.0?topic=server-configuring-liberty-jvm)
+*  CICS documentation [Configuring a JVM server to support Db2](https://www.ibm.com/docs/en/cics-ts/5.4.0?topic=programs-configuring-jvm-server-support-db2)
 
 ## License
 This project is licensed under [Apache License Version 2.0](LICENSE).
